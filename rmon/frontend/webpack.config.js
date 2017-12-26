@@ -2,11 +2,14 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
-  entry: './src/main.js',
+  entry: {
+    app: './src/app/main.js',
+    wx: './src/wx/main.js'
+  },
   output: {
     path: path.resolve(__dirname, '../static/js/'),
     publicPath: '/static/js/',
-    filename: 'app.js'
+    filename: '[name].js'
   },
   module: {
     rules: [

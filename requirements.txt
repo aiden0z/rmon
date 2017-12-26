@@ -7,3 +7,7 @@ ipython==6.2.0
 pylint==1.7.2
 pytest==3.2.2
 pytest-flask==0.10.0
+wechatpy==1.5.1
+cryptography==2.1.1
+flask-shell-ipython==0.3.0
+PyJWT==1.5.3
