@@ -12,6 +12,12 @@ from rmon.config import DevConfig, ProductConfig
 
 def create_app():
     """ 创建并初始化 Flask app
+
+    Args:
+        config (dict): 配置字典
+
+    Returns:
+        app (object): Flask App 实例
     """
 
     app = Flask('rmon')

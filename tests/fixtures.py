@@ -22,6 +22,14 @@ def db(app):
         database.drop_all()
 
 
+@pytest.yield_fixture
+def client(app):
+    """测试客户端
+    """
+    with app.test_client() as client:
+        yield client
+
+
 @pytest.fixture
 def server(db):
     """测试 Redis 服务器记录

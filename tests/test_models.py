@@ -1,7 +1,6 @@
 from rmon.models import Server
 from rmon.common.rest import RestException
 
-
 class TestServer:
     """测试 Server 相关功能
     """
@@ -47,3 +46,37 @@ class TestServer:
         except RestException as e:
             assert e.code == 400
             assert e.message == 'redis server %s can not connected' % server.host
+
+    def test_get_metrics_success(self, server):
+        """测试 Server.get_metrics 方法执行成功
+        """
+
+        metrics = server.get_metrics()
+
+        # refer https://redis.io/commands/INFO
+        assert 'total_commands_processed' in metrics
+        assert 'used_cpu_sys' in metrics
+        assert 'used_memory' in metrics
+
+    def test_get_metrics_failed(self, server):
+        """测试 Server.get_metrics 方法执行失败
+        """
+
+        # 没有 Redis 服务器监听在 127.0.0.1:6399 地址, 所以将访问失败
+        server = Server(name='test', host='127.0.0.1', port=6399)
+
+        try:
+            info  = server.get_metrics()
+        except RestException as e:
+            assert e.code == 400
+            assert e.message == 'redis server %s can not connected' % server.host
+
+    def test_execute_success(self, server):
+        """测试 Server.execute 方法执行 Redis 指令成功
+        """
+        pass
+
+    def test_execute_failed(self, server):
+        """测试 Server.execute 执行失败
+        """
+        pass
