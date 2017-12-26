@@ -1,10 +1,14 @@
-""" rmon.model
+""" rmon.models
 
 该模块实现了所有的 model 类以及相应的序列化类
 """
 from flask_sqlalchemy import SQLAlchemy
+from redis import StrictRedis, RedisError
 
 from datetime import datetime
+
+from rmon.common.rest import RestException
+
 
 db = SQLAlchemy()
 
@@ -39,3 +43,26 @@ class Server(db.Model):
         """
         db.session.delete(self)
         db.session.commit()
+
+    @property
+    def redis(self):
+        return StrictRedis(host=self.host, port=self.port, password=self.password)
+
+    def ping(self):
+        """检查 Redis 服务器是否可以访问
+        """
+        try:
+            return self.redis.ping()
+        except RedisError:
+            raise RestException(400, 'redis server %s can not connected' % self.host)
+
+    def get_metrics(self):
+        """获取 Redis 服务器监控信息
+
+        通过 Redis 服务器指令 INFO 返回监控信息, 参考 https://redis.io/commands/INFO
+        """
+        try:
+            # TODO 新版本的 Redis 服务器支持查看某一 setion 的信息，不必返回所有信息
+            return self.redis.info()
+        except RedisError:
+            raise RestException(400, 'redis server %s can not connected' % self.host)
