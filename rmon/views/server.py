@@ -2,15 +2,20 @@
 
 实现了所有的视图控制器
 """
+
 from flask import request, g
 
 from rmon.common.rest import RestView
-from rmon.common.decorators import ObjectMustBeExist
 from rmon.models import Server, ServerSchema
+
+from .decorators import ObjectMustBeExist, TokenAuthenticate
+
 
 class ServerList(RestView):
     """Redis 服务器列表
     """
+
+    method_decorators = (TokenAuthenticate(), )
 
     def get(self):
         """获取 Redis 列表
@@ -34,7 +39,7 @@ class ServerDetail(RestView):
     """ Redis 服务器列表
     """
 
-    method_decorators = (ObjectMustBeExist(Server), )
+    method_decorators = (TokenAuthenticate(), ObjectMustBeExist(Server))
 
     def get(self, object_id):
         """
@@ -63,7 +68,7 @@ class ServerDetail(RestView):
 class ServerMetrics(RestView):
     """获取服务器监控信息
     """
-    method_decorators = (ObjectMustBeExist(Server), )
+    method_decorators = (TokenAuthenticate(), ObjectMustBeExist(Server))
 
     def get(self, object_id):
         """获取监控信息
@@ -76,7 +81,7 @@ class ServerCommand(RestView):
     """执行命令
     """
 
-    method_decorators = (ObjectMustBeExist(Server), )
+    method_decorators = (TokenAuthenticate(), ObjectMustBeExist(Server))
 
     def post(self, object_id):
         """执行 Redis 命令
