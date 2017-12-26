@@ -4,7 +4,7 @@
 
 RestException 是 restful 类型的异常基类，该类型的异常发生时，将被自动序列化为 json 响应。
 
-RestView 实现了 restful 视图基类，基于该基类实现视图控制器时，执行结果将被序列化为 json
+RestView 实现了 restful 视图基类，基于该基类实现视图控制器时，执行结果将被序列化为 json 
 响应。
 """
 from collections import Mapping
