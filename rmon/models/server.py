@@ -26,7 +26,7 @@ class Server(BaseModel):
     description = db.Column(db.String(512))
     host = db.Column(db.String(15))
     port = db.Column(db.Integer, default=6379)
-    password = db.Column(db.String())
+    password = db.Column(db.String(16))
 
     @property
     def redis(self):
