@@ -1,6 +1,6 @@
 """ rmon.common.errors
 
-包含一些异常类型。
+包含一些异常类型
 """
 
 class RestError(Exception):
@@ -20,13 +20,19 @@ class RestError(Exception):
 
 
 class RedisConnectError(RestError):
+    """Redis 链接错误
+    """
     pass
 
 
 class InvalidTokenError(RestError):
+    """无效的 token 错误
+    """
     pass
 
 
 class AuthenticationError(RestError):
+    """认证失败错误
+    """
     pass
 

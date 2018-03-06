@@ -1,6 +1,6 @@
 """ tests.views.test_server
 
-测试 Redis 服务器相关所有 API
+测试 Redis 服务器管理 API
 """
 
 import json

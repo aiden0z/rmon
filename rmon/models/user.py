@@ -1,6 +1,6 @@
 """ rmon.models.user
 
-该模块实现了用户数据库模型
+该模块实现了 User 数据库模型及相应的序列化类
 """
 
 import jwt
@@ -19,7 +19,6 @@ from .base import BaseModel
 
 
 class User(BaseModel):
-
     """用户模型
     """
     __tablename__ = 'user'

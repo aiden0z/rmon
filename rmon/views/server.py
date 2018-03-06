@@ -1,6 +1,6 @@
 """ rmon.views.host
 
-实现了所有的视图控制器
+服务器管理 API 实现
 """
 
 from flask import request, g

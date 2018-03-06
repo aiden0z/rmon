@@ -18,9 +18,9 @@ class DevConfig:
 
     WX_TOKEN = 'shiyanlou-rmon'
     # 替换微信公众号  app id
-    WX_APP_ID = 'wx7e07491f3a9329d4'
+    WX_APP_ID = 'your_wx_app_id'
     # 替换成微信公众号 app secret
-    WX_SECRET = 'c6348148c9655c866dfd872139ba2591'
+    WX_SECRET = 'your_wx_secret_key'
 
 
 class ProductConfig(DevConfig):

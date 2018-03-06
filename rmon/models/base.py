@@ -1,6 +1,6 @@
 """  rmon.models.base
 
-该模块定义了数据库基类
+该模块定义了数据库模型基类
 """
 from datetime import datetime
 

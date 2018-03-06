@@ -1,6 +1,6 @@
 """ rmon.models.server
 
-该模块实现了所有的 model 类以及相应的序列化类
+该模块实现了 Server 数据库模型及相应的序列化类
 """
 
 from marshmallow import (Schema, fields, validate, post_load,
@@ -65,7 +65,7 @@ class Server(BaseModel):
 
 
 class ServerSchema(Schema):
-    """Redis服务器记录序列化类
+    """Redis服务器序列化类
     """
     id = fields.Integer(dump_only=True)
     name = fields.String(required=True, validate=validate.Length(2, 64))

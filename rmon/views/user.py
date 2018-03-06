@@ -1,6 +1,6 @@
 """ rmon.views.user
 
-实现所有的用户管理功能
+用户管理 API 视图
 """
 from flask import request, g
 
